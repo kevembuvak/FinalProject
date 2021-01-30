@@ -1,0 +1,19 @@
+* Data Access ----> veri ulasim (SQL)
+THE NERD ONE
+
+
+* Business ----> genel kodlar, metodlar
+is kurallari ve ifler (mesela yeni gelen
+kullanici maks 10 urun ekleyebilir)
+THE BOSSY ONE
+
+
+* UI ----> kullanici arayuzu (ASP.net)
+THE SOCIAL ONE
+
+
+* Android ve IOS gibi farkli ortamlari
+business layer'a baglayabilmek icin 
+API kullanilir, mesela MERNIS business 
+layer'i baglarken onu ellemiyoruz, API
+ile direk bagliyoruz

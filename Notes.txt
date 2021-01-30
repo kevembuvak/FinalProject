@@ -1,0 +1,7 @@
+* Abstract -----> Soyutlar ve Referans Tutucular
+* Concrete -----> Somutlar
+
+* class'lar default olarak internal'dir yani ayni proje içindekiler kullanabilir
+ama burda farkli katmanlar oldugundan public yazilmali
+
+IProductDal -----> Interface of Product Data Access Layer
