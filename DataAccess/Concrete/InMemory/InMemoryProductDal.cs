@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,6 +103,11 @@ namespace DataAccess.Concrete.InMemory
         public List<Product> GetAllByCategory(int categoryId)
         {
             return _products.Where(p => p.CategoryId == categoryId).ToList(); // uyan her nesneyle yeni bir liste haline getirir ve döndürür
+        }
+
+        public List<ProductDetailDto> GetProuctDetailDtos()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Product product)
