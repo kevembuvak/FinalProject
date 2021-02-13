@@ -1,0 +1,3 @@
+﻿Controller dosyalari gelen isteklerin hepsini karsilar ve kontrol eder
+
+HTTP kontrolu --> internet uzerinden
