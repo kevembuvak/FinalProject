@@ -1,5 +1,5 @@
 ﻿1 ile baslayanlar BILGILENDIRME yanitlari
-2 ile baslayanlar BASARİ yanitlari
+2 ile baslayanlar BASARi yanitlari
 3 ile baslayanlar YONLENDIRMEler
 4 ile baslayanlar ISTEMCI HATALARI
 5 ile baslayanlar SUNUCU HATALARIdir.
@@ -13,7 +13,34 @@ Request TRACE ise : Mesaj govdesinde sunucu tarafindan alindigi sekliyle istek m
 301 : Kalici yonlendirmeyi belirtir. Bu yanit kodu, istenen kaynagin URI'sinin degistirildigi anlamina gelir. Muhtemelen, yanitta yeni URI verilecektir.
 400 : Gecersiz istek demektir. Bu yanit, sunucunun gecersiz soz dizimi nedeniyle istegi anlayamadigi anlamina gelir.
 401 : Yetkilendirilmemis anlamina gelir. HTTP standardi "yetkisiz" belirtmesine ragmen, anlamsal olarak bu yanit "kimlik dogrulamasi yapilmamis" anlamina gelir. Yani, istemci, istenen yaniti almak icin kendi kimligini dogrulamalidir. Kisacasi kimlik null olmamalidir 
-403 : Yasaklanmis anlamina gelir. İstemci icerige erisim haklarina sahip degildir, yani yetkisizdir, bu nedenle sunucu uygun yanit vermeyi reddeder. 401'den farkli olarak, istemcinin kimligi sunucu tarafindan bilinir.
+403 : Yasaklanmis anlamina gelir. istemci icerige erisim haklarina sahip degildir, yani yetkisizdir, bu nedenle sunucu uygun yanit vermeyi reddeder. 401'den farkli olarak, istemcinin kimligi sunucu tarafindan bilinir.
 404 : Bulunamadi anlamina gelir. Sunucu istenen kaynagi bulamamistir. Tarayicida, URL'nin taninmadigi anlamina gelir. Bir API icin, son noktanin gecerli oldugu ancak kaynagin kendisinin olmadigi anlamina da gelebilir. Sunucular, bir kaynagin varligini yetkisiz bir istemciden gizlemek icin 403 yerine bu yaniti da gonderebilir. Bu yanit kodu, web'de sik gorulmesi nedeniyle muhtemelen en unlu olan yanittir.
 500 : Ic sunucu hatasi anlamina gelir. Sunucu, nasil basa cikacagini bilmedigi bir durumla karsilasmistir.
 502 : Gecersiz ag gecidi demektir. Bu hata yaniti, sunucunun istegi islemek icin gereken yaniti almak icin bir ag gecidi olarak calisirken gecersiz bir yanit aldigi anlamina gelir.
+
+HTTP 200 (OK)
+HTTP 200 durum kodu, yanitin basarili oldugunu gösterir. Yani, istemci ile sunucu arasindaki iletisim herhangi bir hata olmadan sorunsuz bir sekilde yürütülmüstür.
+
+HTTP 201 (Created)
+Bu, talebin sadece basarili olmadigini, ayni zamanda bir kaynagin da yaratildigini gösterir. Bu durum kodu, sunucuya gönderilen kaynagi tanimladigi icin genellikle bir POST istegiyle birlikte gelir.
+
+HTTP 301 (Moved Permanently)
+Burada, kaynaga yapilacak tüm gelecekteki istekler belirli bir URL'ye yönlendirilmelidir. Artik var olmayan bir sayfadan yönlendirme yapmak icin kullanilabilir. Ancak bu istegin yalnizca GET veya HEAD yöntemleri icin kullanilmasi önerilir, cünkü bazi hatalar icerir ve tüm kullanici aracilari onunla uyumlu degildir. Bu tür bir yanit varsayilan olarak önbellege alinabilir.
+
+HTTP 400 (Bad Request)
+Bu, alinan istegin yanlis söz diziminden kaynaklanabilecek bir hata nedeniyle sunucu tarafindan islenemedigini gösterir. Sunucu, bir sonraki talep alindiginda bazi degisikliklerin yapilmasini bekler, aksi takdirde ayni hata devam eder.
+
+HTTP 401 (Unauthorized)
+Bu durumda, alinan bir yanita erisim saglamak icin yetkilendirme gerekir. Bu HTTP durum kodu HTTP 403'e benzer. Ancak burada, talebin kabul edilebilmesi icin gecerli kimlik bilgilerine sahip olmasi beklenir.
+
+HTTP 403 (Forbidden)
+Bu HTTP durum kodu, kullanici-istemcinin gecerli bir veriye sahip oldugu ancak sunucu tarafindan erisimin reddedildigi anlamina gelir. Kullanicinin söz konusu kaynak üzerinde herhangi bir hakka sahip olmasina izin verilmediginden, tekrarlanan girisimlerde bulunmak kullanici olarak basarili bir yanit vermeyecektir.
+
+HTTP 404 (Not Found)
+Bu HTTP kodu, istenen kaynagin sunucu tarafindan bulunamayacagi anlamina gelir. Bu, gecici bir aksakliktan kaynaklaniyor olabilir ve gelecekte baska bir istekte bulunulursa kaynak kullanilabilir olabilir. cogunlukla, 404'e götüren baglantilara genellikle bozuk baglantilar denir.
+
+HTTP 500 (Internal Server Error)
+Burada, belirli bir istegin, istegi tamamlayamamasina neden olan beklenmedik bir durumla karsilastigi anlamina gelir. Kullanicinin bu HTTP durum kodunu web sayfasinda görmesi beklenmez.
+
+HTTP 502 (Bad Gateway)
+Bu HTTP kodu, sunucunun proxy olarak hareket ederken istekte bulunurken sunucudan gecersiz bir yanit aldigini gösterir.
