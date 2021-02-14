@@ -1,0 +1,19 @@
+﻿1 ile baslayanlar BILGILENDIRME yanitlari
+2 ile baslayanlar BASARİ yanitlari
+3 ile baslayanlar YONLENDIRMEler
+4 ile baslayanlar ISTEMCI HATALARI
+5 ile baslayanlar SUNUCU HATALARIdir.
+
+200 TAMAM - Istek basarili oldu anlamina geliyor ancak buradaki basari, HTTP talebine gore farkli anlamlara geliyor:
+Request GET ise : Kaynak alindi ve mesaj govdesinde iletildi.
+Request HEAD ise : Varlik basliklari mesaj govdesindedir.
+Request PUT veya POST ise : Eylemin sonucunu aciklayan kaynak mesaj govdesinde iletildi.
+Request TRACE ise : Mesaj govdesinde sunucu tarafindan alindigi sekliyle istek mesaji bulunuyor.
+201 : Istek basarili oldu ve bunun sonucunda yeni bir kaynak olusturuldu demektir. Genellikle POST veya PUT isteklerinden sonra gonderilir.
+301 : Kalici yonlendirmeyi belirtir. Bu yanit kodu, istenen kaynagin URI'sinin degistirildigi anlamina gelir. Muhtemelen, yanitta yeni URI verilecektir.
+400 : Gecersiz istek demektir. Bu yanit, sunucunun gecersiz soz dizimi nedeniyle istegi anlayamadigi anlamina gelir.
+401 : Yetkilendirilmemis anlamina gelir. HTTP standardi "yetkisiz" belirtmesine ragmen, anlamsal olarak bu yanit "kimlik dogrulamasi yapilmamis" anlamina gelir. Yani, istemci, istenen yaniti almak icin kendi kimligini dogrulamalidir. Kisacasi kimlik null olmamalidir 
+403 : Yasaklanmis anlamina gelir. İstemci icerige erisim haklarina sahip degildir, yani yetkisizdir, bu nedenle sunucu uygun yanit vermeyi reddeder. 401'den farkli olarak, istemcinin kimligi sunucu tarafindan bilinir.
+404 : Bulunamadi anlamina gelir. Sunucu istenen kaynagi bulamamistir. Tarayicida, URL'nin taninmadigi anlamina gelir. Bir API icin, son noktanin gecerli oldugu ancak kaynagin kendisinin olmadigi anlamina da gelebilir. Sunucular, bir kaynagin varligini yetkisiz bir istemciden gizlemek icin 403 yerine bu yaniti da gonderebilir. Bu yanit kodu, web'de sik gorulmesi nedeniyle muhtemelen en unlu olan yanittir.
+500 : Ic sunucu hatasi anlamina gelir. Sunucu, nasil basa cikacagini bilmedigi bir durumla karsilasmistir.
+502 : Gecersiz ag gecidi demektir. Bu hata yaniti, sunucunun istegi islemek icin gereken yaniti almak icin bir ag gecidi olarak calisirken gecersiz bir yanit aldigi anlamina gelir.
