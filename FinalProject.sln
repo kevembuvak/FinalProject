@@ -9,8 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Busine
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A96A4BA8-AFB4-4F92-826E-009739458533}"
 	ProjectSection(SolutionItems) = preProject
+		Attributes.txt = Attributes.txt
 		Notes.txt = Notes.txt
 		ProjectLayering.txt = ProjectLayering.txt
+		..\..\..\OneDrive\Masaüstü\Reflections.png = ..\..\..\OneDrive\Masaüstü\Reflections.png
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{C0256D38-C450-430B-9731-9CFF83E10802}"
@@ -19,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI", "ConsoleUI\Cons
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{7950A020-5E8C-4467-A24D-32EFC69386E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{681220D8-B216-44B9-90C0-B2C843BDCBC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{681220D8-B216-44B9-90C0-B2C843BDCBC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

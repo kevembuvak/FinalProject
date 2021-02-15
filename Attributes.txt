@@ -1,0 +1,29 @@
+class RequiredPropertyAttribute: Attribute
+{
+
+}
+
+Used to decrease the amount of code written in a method, and to code clean.
+
+For example:
+
+class Stuff
+{
+	[RequiredProperty]  ----> codes are not written here, it looks cleaner
+	public string Hello {get; set;}
+}
+
+it can also be above the class
+
+[ToTable("parameter")]
+class Stuff2{}
+
+in order to have a parameter in a attribute, you have to put a ctor in it
+
+class ToTableAttribute: Attribute
+{
+	public ToTable("parameter")
+	{
+		
+	}
+}
