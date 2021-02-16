@@ -1,0 +1,74 @@
+namespace Delegates
+{
+	******public delegate void MyDelegate();
+	******public delegate void MyDelegate2(string text);
+	******public delegate int MyDelegate3(int num1, int num2);
+
+
+	class Program
+	{
+		static void Main(string args[])
+		{
+			CustomerManager manager = new CustomerManager();
+
+			MyDelegate myDelegate = manager.SendMessage;
+			myDelegate += manager.ShowAlert;
+
+			myDelegate -= manager.SendMessage;
+
+			myDelegate();
+
+			MyDelegate2 myDelegate2 = manager.SendMessage2;
+			myDelegate2 += manager.ShowAlert2;
+
+			myDelegate2("Hello");
+			// iki metotda da ayni parametre calisir bu sekilde
+
+			Matematik matematik = new Matematik();
+
+			MyDelegate3 myDelegate3 = matematik.Topla;
+			myDelegate3 += matematik.Carp;
+			
+			var result = myDelegate3(3, 5);
+			// return oldugu icin sondaki return result'a esit olur
+		}
+	}
+
+	public class CustomerManager
+	{
+		public void SendMessage()
+		{
+			Codess..
+		}
+
+		public void ShowAlert()
+		{
+			Codess..
+		}
+
+		public void SendMessage2(string text)
+		{
+			Codess..
+		}
+
+		public void ShowAlert2(string text)
+		{
+			Codess..
+		}
+	}
+
+
+	public class Matematik
+	{
+		public int Topla(int sayi1, int sayi2)
+		{
+			return sayi1+sayi2;
+		}
+
+		public int Carp(int sayi1, int sayi2)
+		{
+		 return sayi1*sayi2;
+		}
+	}
+
+}
