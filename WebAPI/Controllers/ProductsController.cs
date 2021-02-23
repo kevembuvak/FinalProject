@@ -12,8 +12,7 @@ using System.Threading.Tasks;
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    // -----> attribute - class ile ilgili bilgi verme, imzalama
+    [ApiController] // -----> attribute - class ile ilgili bilgi verme, imzalama
     public class ProductsController : ControllerBase
     {
         // Loosely coupled - gevşek bağlılık

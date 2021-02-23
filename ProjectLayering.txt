@@ -17,3 +17,6 @@ business layer'a baglayabilmek icin
 API kullanilir, mesela MERNIS business 
 layer'i baglarken onu ellemiyoruz, API
 ile direk bagliyoruz
+
+Cross Cutting Concerns - Her katmani ilgilendiren kodlar mesela loglama, validation,
+cache, transaction vb.
