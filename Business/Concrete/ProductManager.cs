@@ -139,7 +139,7 @@ namespace Business.Concrete
 
         private IResult CheckIfCategoryLimitIsReached()
         {
-            var result = _categoryDal.GetAll().Count;
+            var result = _categoryService.GetAll().Data.Count;
 
             if (result >= 15)
             {
