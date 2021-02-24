@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -11,24 +12,60 @@ using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+using Core.Utilities.Business;
 
 namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
+        ICategoryService _categoryService;
 
-        public ProductManager(IProductDal productDal)
+        //public ProductManager(IProductDal productDal, ICategoryDal categoryDal)
+        //{
+        //    _productDal = productDal;
+        //    _categoryDal = categoryDal;
+        //}
+        // bir EntityManager, kendi entity'si dışında başka Dal injection yapamaz
+
+        public ProductManager(IProductDal productDal, ICategoryService categoryService)
         {
             _productDal = productDal;
+            _categoryService = categoryService;
         }
 
 
         // Validation kodu ile business kodu ayrıdır
-        [ValidationAspect(typeof(ProductValidator))]
+        // Validation ---> verilen objenin, parametrenin uygunluğunu kontrol eder, mesela şifre ile şifre onay aynı 
+        // değil ise burda hata verir
+
+        //[ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             // İş Kodları - Business Codes -----> Koşullar Döngüler vs.
+
+
+
+            //var result = _productDal.GetAll().Where(p => p.CategoryId == product.CategoryId).ToList();
+
+            //if (result.Count >= 10)
+            //{
+            //    return new ErrorResult(Messages.ExcessiveProduct);
+            //}
+            //
+            //İş kodu böyle yazılmaz, aynı kod update'te de var, DRY - do not repeat yourself
+
+            IResult result = BusinessRules.Run(
+                               CheckIfProductCountOfCategoryCorrect(product.CategoryId),
+                               CheckIfProductNameExists(product.ProductName),
+                               CheckIfCategoryLimitIsReached()
+                             );
+
+            if (result != null)
+            {
+                return result;
+            }
 
             _productDal.Add(product);
 
@@ -37,7 +74,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAll()
         {
-            if(DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 22)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
@@ -51,7 +88,7 @@ namespace Business.Concrete
         }
 
         public IDataResult<List<Product>> GetAllByUnitPrice(decimal min, decimal max)
-        { 
+        {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max));
         }
 
@@ -63,6 +100,53 @@ namespace Business.Concrete
         public IDataResult<List<ProductDetailDto>> GetProuctDetailDtos()
         {
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProuctDetailDtos());
+        }
+
+        [ValidationAspect(typeof(ProductValidator))]
+        public IResult Update(Product product)
+        {
+            //var result = _productDal.GetAll().Where(p => p.CategoryId == product.CategoryId).ToList();
+
+            //if (result.Count >= 10)
+            //{
+            //    return new ErrorResult(Messages.ExcessiveProduct);
+            //}
+            throw new NotImplementedException();
+        }
+
+        private IResult CheckIfProductCountOfCategoryCorrect(int categoryId) // Product product da verilebilirdi ama iş parçacığı olduğundan bu kadarı yeterli
+        {
+            var result = _productDal.GetAll().Where(p => p.CategoryId == categoryId).ToList().Count;
+
+            if (result >= 10)
+            {
+                return new ErrorResult(Messages.ExcessiveProduct);
+            }
+
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfProductNameExists(string productName)
+        {
+            var result = _productDal.GetAll().Where(p => p.ProductName == productName).Any();
+
+            if (result)
+            {
+                return new ErrorResult(Messages.ProductNameAlreadyExists);
+            }
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfCategoryLimitIsReached()
+        {
+            var result = _categoryDal.GetAll().Count;
+
+            if (result >= 15)
+            {
+                return new ErrorResult(Messages.CategoryLimitIsReached);
+            }
+
+            return new SuccessResult();
         }
     }
 }
