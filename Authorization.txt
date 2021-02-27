@@ -1,0 +1,11 @@
+JWT (Jason Web Token), kullanici metodu cagirdiginde istenen yetki anahtari; kullanici istek attiginda
+o istek ile beraber token da gelir
+
+Hashing --> sifreler veri tabaninda acik acik yazilamaz, bu yuzden sifrelenerek yazilir ve bu isleme hashing denir
+hashing algoritmasi geri dondurulemez ama rainbow table (daha onceden berlirlenmis hash kodlarini tutan bir veri tabani)
+sayesinde ogrenilebilir
+!! verinin tamami hashlenmez, karsiligi olan bi sey verilir
+
+Salting --> girilen sifreyi guclendirme
+
+Encryption --> veri tamamen sifrelenir, geri dondurulebilir (decryption)

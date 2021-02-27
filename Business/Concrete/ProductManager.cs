@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Core.Utilities.Business;
+using Business.BusinessAspects.Autofac;
 
 namespace Business.Concrete
 {
@@ -39,7 +40,8 @@ namespace Business.Concrete
         // Validation ---> verilen objenin, parametrenin uygunluğunu kontrol eder, mesela şifre ile şifre onay aynı 
         // değil ise burda hata verir
 
-        //[ValidationAspect(typeof(ProductValidator))]
+        [SecuredOperation("product.add,admin")]
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             // İş Kodları - Business Codes -----> Koşullar Döngüler vs.
